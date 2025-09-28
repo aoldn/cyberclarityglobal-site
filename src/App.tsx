@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
+import "./theme.css";
 
 /* ========= Interactive Eye Logo ========= */
 const EyeLogo: React.FC<{ size?: number; withText?: boolean; className?: string }> = ({
@@ -117,8 +119,8 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(1200px_800px_at_70%_-10%,rgba(0,200,255,0.08),transparent),radial-gradient(1000px_600px_at_10%_110%,rgba(0,170,220,0.08),transparent)] bg-[#0a1621] text-cyan-50">
-      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-[#0a1621]/60 border-b border-white/10">
+    <div className="min-h-screen bg-[radial-gradient(1200px_800px_at_70%_-10%,var(--grad-1),transparent),radial-gradient(1000px_600px_at_10%_110%,var(--grad-2),transparent)] bg-[color:var(--bg)] text-[color:var(--text)]">
+      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-[color:var(--bg)]/60 border-b border-[color:var(--border)]">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2">
             <EyeLogo size={46} withText={false} />
@@ -132,6 +134,7 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             {navLink("/privacy", "Privacy")}
             {navLink("/terms", "Terms")}
           </div>
+          <ThemeToggle />
           <button className="md:hidden ml-auto p-2" onClick={() => setOpen((v) => !v)}>
             {open ? <X /> : <Menu />}
           </button>
@@ -142,7 +145,7 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="md:hidden border-t border-white/10"
+              className="md:hidden border-t border-[color:var(--border)]"
             >
               <div className="px-4 py-2 flex flex-col gap-2">
                 <Link className="py-2" to="/services">
@@ -169,7 +172,7 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </AnimatePresence>
       </header>
       <main className="max-w-6xl mx-auto px-4 py-10">{children}</main>
-      <footer className="mt-16 border-t border-white/10">
+      <footer className="mt-16 border-t border-[color:var(--border)]">
         <div className="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-3 gap-6 text-sm text-cyan-200/80">
           <div>
             <EyeLogo size={44} withText={false} />
@@ -235,7 +238,7 @@ const Section: React.FC<{ title: string; subtitle?: string; children?: React.Rea
 /* ========= Pages ========= */
 const HomePage = () => (
   <>
-    <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-white/5 border border-white/10 shadow-xl">
+    <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-[color:var(--card)] border border-[color:var(--border)] shadow-xl">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(400px_200px_at_20%_0%,rgba(0,230,255,0.08),transparent),radial-gradient(400px_200px_at_90%_40%,rgba(0,170,255,0.08),transparent)]" />
       <div className="grid md:grid-cols-2 gap-8 items-center relative">
         <div>
@@ -248,7 +251,7 @@ const HomePage = () => (
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
+              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-[color:var(--cta)] text-[color:var(--bg)] font-medium hover:bg-[color:var(--cta-hover)] transition"
             >
               Start a project <ArrowRight size={18} />
             </Link>
@@ -264,7 +267,7 @@ const HomePage = () => (
             { title: "SOC 2 Readiness", text: "Control mapping, monitoring dashboards, executive reporting." },
             { title: "Third-Party Risk", text: "Due diligence, contractual controls, continuous monitoring." },
           ].map((c, i) => (
-            <div key={i} className="p-5 rounded-2xl bg-[#0f2231]/60 border border-white/10 flex items-start gap-3">
+            <div key={i} className="p-5 rounded-2xl bg-[color:var(--bg)]/60 border border-[color:var(--border)] flex items-start gap-3">
               <Shield className="shrink-0" />
               <div>
                 <div className="font-semibold">{c.title}</div>
@@ -283,7 +286,7 @@ const HomePage = () => (
           { h: "Executive-Ready Insight", p: "Live MI & dashboards that make risk visible and actionable." },
           { h: "From Policy to Practice", p: "We don’t just write documents—we implement controls and train teams." },
         ].map((b, i) => (
-          <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div key={i} className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--border)]">
             <div className="font-semibold mb-2">{b.h}</div>
             <div className="text-sm text-cyan-200/80">{b.p}</div>
           </div>
@@ -294,7 +297,7 @@ const HomePage = () => (
     <Section title="Selected Outcomes">
       <div className="grid md:grid-cols-3 gap-5">
         {["ISO 27001 certification in 14 weeks", "SOC 2 Type I in 90 days", "Vendor risk time cut by 60%"].map((t, i) => (
-          <div key={i} className="p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10">
+          <div key={i} className="p-6 rounded-2xl bg-gradient-to-br from-[color:var(--card)] to-[color:var(--card)]/50 border border-[color:var(--border)]">
             <div className="flex items-center gap-2 text-cyan-100">
               <CheckCircle2 /> {t}
             </div>
@@ -325,7 +328,7 @@ const ServicesPage = () => (
         { t: "Due Diligence & Investor-Readiness Packs", d: "Security and compliance material needed during funding rounds—making you look enterprise-ready without enterprise cost.", price: "£349" },
         { t: "Monthly Compliance & Advisory Retainers", d: "Ongoing support for founders who need someone to own cybersecurity and compliance. Perfect for teams not yet ready for a full-time security hire.", price: "From £499/mo" },
       ].map((s, i) => (
-        <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between">
+        <div key={i} className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--border)] flex flex-col justify-between">
           <div>
             <div className="font-semibold">{s.t}</div>
             <div className="text-sm text-cyan-200/80 mt-2">{s.d}</div>
@@ -337,8 +340,8 @@ const ServicesPage = () => (
 
     <Section title="Bundles at a Glance" subtitle="Compare our packaged offerings for the best value.">
       <div className="overflow-x-auto">
-        <table className="min-w-full text-sm border border-white/10 rounded-2xl overflow-hidden">
-          <thead className="bg-white/10">
+        <table className="min-w-full text-sm border border-[color:var(--border)] rounded-2xl overflow-hidden">
+          <thead className="bg-[color:var(--card)]">
             <tr>
               <th className="px-4 py-2 text-left">Bundle</th>
               <th className="px-4 py-2 text-left">Includes</th>
@@ -347,7 +350,7 @@ const ServicesPage = () => (
             </tr>
           </thead>
           <tbody>
-            <tr className="border-t border-white/10">
+            <tr className="border-t border-[color:var(--border)]">
               <td className="px-4 py-3 font-semibold flex items-center gap-2">
                 <CheckCircle2 size={16} /> Starter
               </td>
@@ -355,7 +358,7 @@ const ServicesPage = () => (
               <td className="px-4 py-3">£299</td>
               <td className="px-4 py-3">Early stage teams</td>
             </tr>
-            <tr className="border-t border-white/10 bg-white/5">
+            <tr className="border-t border-[color:var(--border)] bg-[color:var(--card)]">
               <td className="px-4 py-3 font-semibold flex items-center gap-2">
                 <CheckCircle2 size={16} /> Core
               </td>
@@ -363,7 +366,7 @@ const ServicesPage = () => (
               <td className="px-4 py-3">£449</td>
               <td className="px-4 py-3">Founders needing fast compliance wins</td>
             </tr>
-            <tr className="border-t border-white/10">
+            <tr className="border-t border-[color:var(--border)]">
               <td className="px-4 py-3 font-semibold flex items-center gap-2">
                 <CheckCircle2 size={16} /> Complete{" "}
                 <span className="ml-2 text-xs bg-cyan-500 text-[#07131e] px-2 py-1 rounded-full">Best Value</span>
@@ -390,7 +393,7 @@ const ServicesPage = () => (
         </div>
         <Link
           to="/contact"
-          className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
+          className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-[color:var(--cta)] text-[color:var(--bg)] font-medium hover:bg-[color:var(--cta-hover)] transition"
         >
           Schedule a call <ArrowRight size={18} />
         </Link>
@@ -409,7 +412,7 @@ const AboutPage = () => (
     <Section title="Principles">
       <ul className="grid md:grid-cols-3 gap-5">
         {["Clarity over jargon", "Automation where it counts", "Evidence-first by default"].map((p, i) => (
-          <li key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <li key={i} className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--border)]">
             {p}
           </li>
         ))}
@@ -424,7 +427,7 @@ const BlogPage = () => (
     <p className="mt-2 text-cyan-200/80">Opinionated takes on compliance that actually helps ship.</p>
     <div className="grid md:grid-cols-3 gap-5 mt-6">
       {[1, 2, 3].map((i) => (
-        <article key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+        <article key={i} className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--border)]">
           <div className="text-sm text-cyan-200/60">{`2025-0${i}-12`}</div>
           <h3 className="mt-1 font-semibold">{`Post ${i}: Modern ISO Metrics`}</h3>
           <p className="text-sm text-cyan-200/80 mt-2">Cut noise from KPIs, track outcomes that change behaviour.</p>
@@ -495,7 +498,7 @@ const ContactPage = () => {
               required={f.required}
               value={form[f.name]}
               onChange={(e) => setForm((prev) => ({ ...prev, [f.name]: e.target.value }))}
-              className="mt-1 w-full rounded-xl bg-[#0f2231] border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="mt-1 w-full rounded-xl bg-[color:var(--bg)] border border-[color:var(--border)] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--cta)] text-[color:var(--text)]"
               placeholder={f.label}
             />
           </label>
@@ -507,14 +510,14 @@ const ContactPage = () => {
             rows={5}
             value={form.details}
             onChange={(e) => setForm((prev) => ({ ...prev, details: e.target.value }))}
-            className="mt-1 w-full rounded-xl bg-[#0f2231] border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            className="mt-1 w-full rounded-xl bg-[color:var(--bg)] border border-[color:var(--border)] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--cta)] text-[color:var(--text)]"
             placeholder="What outcome are you after?"
           />
         </label>
 
         <button
           type="submit"
-          className="md:col-span-2 inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
+          className="md:col-span-2 inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-[color:var(--cta)] text-[color:var(--bg)] font-medium hover:bg-[color:var(--cta-hover)] transition"
         >
           Send enquiry <ArrowRight size={18} />
         </button>
