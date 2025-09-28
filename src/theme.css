@@ -1,0 +1,49 @@
+/* Theme CSS with Apple-inspired default */
+
+:root {
+  /* Apple theme (default) - Pure white background */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --accent: #007aff;
+  --border: #d2d2d7;
+  --grad-1: transparent;
+  --grad-2: transparent;
+}
+
+/* Apple theme explicit class */
+.theme-apple {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --accent: #007aff;
+  --border: #d2d2d7;
+  --grad-1: transparent;
+  --grad-2: transparent;
+}
+
+/* Microsoft theme */
+.theme-microsoft {
+  --bg-primary: #f3f2f1;
+  --bg-secondary: #faf9f8;
+  --text-primary: #323130;
+  --text-secondary: #605e5c;
+  --accent: #0078d4;
+  --border: #edebe9;
+  --grad-1: rgba(0, 120, 212, 0.05);
+  --grad-2: rgba(0, 120, 212, 0.03);
+}
+
+/* Default (dark) theme */
+.theme-default {
+  --bg-primary: #0a1621;
+  --bg-secondary: #0f2231;
+  --text-primary: #f0fdff;
+  --text-secondary: rgba(240, 253, 255, 0.8);
+  --accent: #00c6e8;
+  --border: rgba(255, 255, 255, 0.1);
+  --grad-1: rgba(0, 200, 255, 0.08);
+  --grad-2: rgba(0, 170, 220, 0.08);
+}

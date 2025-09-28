@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 /* ========= Interactive Eye Logo ========= */
 const EyeLogo: React.FC<{ size?: number; withText?: boolean; className?: string }> = ({
@@ -117,7 +118,10 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(1200px_800px_at_70%_-10%,rgba(0,200,255,0.08),transparent),radial-gradient(1000px_600px_at_10%_110%,rgba(0,170,220,0.08),transparent)] bg-[#0a1621] text-cyan-50">
+    <div className="min-h-screen text-cyan-50" style={{
+      background: `radial-gradient(1200px 800px at 70% -10%, var(--grad-1), transparent), radial-gradient(1000px 600px at 10% 110%, var(--grad-2), transparent), var(--bg-primary)`,
+      color: 'var(--text-primary)'
+    }}>
       <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-[#0a1621]/60 border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2">
@@ -131,6 +135,9 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             {navLink("/contact", "Contact")}
             {navLink("/privacy", "Privacy")}
             {navLink("/terms", "Terms")}
+          </div>
+          <div className="ml-4 hidden md:block">
+            <ThemeToggle />
           </div>
           <button className="md:hidden ml-auto p-2" onClick={() => setOpen((v) => !v)}>
             {open ? <X /> : <Menu />}
@@ -236,7 +243,9 @@ const Section: React.FC<{ title: string; subtitle?: string; children?: React.Rea
 const HomePage = () => (
   <>
     <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-white/5 border border-white/10 shadow-xl">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(400px_200px_at_20%_0%,rgba(0,230,255,0.08),transparent),radial-gradient(400px_200px_at_90%_40%,rgba(0,170,255,0.08),transparent)]" />
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: `radial-gradient(400px 200px at 20% 0%, var(--grad-1), transparent), radial-gradient(400px 200px at 90% 40%, var(--grad-2), transparent)`
+      }} />
       <div className="grid md:grid-cols-2 gap-8 items-center relative">
         <div>
           <EyeLogo size={160} />
