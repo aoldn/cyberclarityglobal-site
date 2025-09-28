@@ -1,0 +1,38 @@
+/* Default theme (dark) - matches current site */
+:root {
+  --bg: #0a1621;
+  --text: #f0fdff;
+  --muted: rgba(34, 211, 238, 0.8);
+  --card: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
+  --cta: rgba(34, 211, 238, 0.9);
+  --cta-hover: rgb(103, 232, 249);
+  --grad-1: rgba(0, 200, 255, 0.08);
+  --grad-2: rgba(0, 170, 220, 0.08);
+}
+
+/* Apple-inspired airy light theme */
+.theme-apple {
+  --bg: #f8fafc;
+  --text: #1e293b;
+  --muted: rgba(100, 116, 139, 0.8);
+  --card: rgba(255, 255, 255, 0.8);
+  --border: rgba(148, 163, 184, 0.2);
+  --cta: #007aff;
+  --cta-hover: #0056cc;
+  --grad-1: rgba(59, 130, 246, 0.1);
+  --grad-2: rgba(147, 197, 253, 0.08);
+}
+
+/* Microsoft-inspired light neutral theme */
+.theme-microsoft {
+  --bg: #fafafa;
+  --text: #323130;
+  --muted: rgba(96, 94, 92, 0.8);
+  --card: rgba(255, 255, 255, 0.9);
+  --border: rgba(200, 198, 196, 0.3);
+  --cta: #0078d4;
+  --cta-hover: #106ebe;
+  --grad-1: rgba(0, 120, 212, 0.08);
+  --grad-2: rgba(64, 153, 255, 0.06);
+}
