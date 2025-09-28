@@ -475,7 +475,95 @@ const ContactPage = () => (
     </form>
   </>
 );
+// ...keep the rest of the file above unchanged...
 
+const ContactPage = () => {
+  type FormState = {
+    name: string;
+    email: string;
+    company: string;
+    budget: string;
+    details: string;
+  };
+
+  const [form, setForm] = React.useState<FormState>({
+    name: "",
+    email: "",
+    company: "",
+    budget: "",
+    details: "",
+  });
+
+  const fields: Array<{ label: string; type: string; name: keyof FormState; required?: boolean }> = [
+    { label: "Name", type: "text", name: "name", required: true },
+    { label: "Email", type: "email", name: "email", required: true },
+    { label: "Company", type: "text", name: "company" },
+    { label: "Budget", type: "text", name: "budget" },
+  ];
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const to = "hello@cyberclarityglobal.com";
+    const subject = `Website enquiry from ${form.name || "Unknown"}${form.company ? ` (${form.company})` : ""}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Company: ${form.company}`,
+      `Budget: ${form.budget}`,
+      "",
+      "Project details:",
+      form.details,
+    ].join("\n");
+
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  };
+
+  return (
+    <>
+      <h1 className="text-3xl md:text-4xl font-semibold">Contact</h1>
+      <p className="mt-2 text-cyan-200/80">Tell us about your goals. We’ll respond within one business day.</p>
+
+      <form className="mt-6 grid md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
+        {fields.map((f, i) => (
+          <label key={i} className="block">
+            <span className="text-sm text-cyan-200/80">{f.label}</span>
+            <input
+              type={f.type}
+              name={f.name}
+              required={f.required}
+              value={form[f.name]}
+              onChange={(e) => setForm((prev) => ({ ...prev, [f.name]: e.target.value }))}
+              className="mt-1 w-full rounded-xl bg-[#0f2231] border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder={f.label}
+            />
+          </label>
+        ))}
+
+        <label className="md:col-span-2 block">
+          <span className="text-sm text-cyan-200/80">Project details</span>
+          <textarea
+            rows={5}
+            value={form.details}
+            onChange={(e) => setForm((prev) => ({ ...prev, details: e.target.value }))}
+            className="mt-1 w-full rounded-xl bg-[#0f2231] border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            placeholder="What outcome are you after?"
+          />
+        </label>
+
+        <button
+          type="submit"
+          className="md:col-span-2 inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
+        >
+          Send enquiry <ArrowRight size={18} />
+        </button>
+      </form>
+    </>
+  );
+};
+
+// ...keep the rest of the file below unchanged...
 const PrivacyPage = () => (
   <>
     <h1 className="text-3xl md:text-4xl font-semibold">Privacy Policy</h1>
