@@ -336,6 +336,12 @@ const ServicesPage = () => (
     <Section title="Bundles at a Glance" subtitle="Compare our packaged offerings for the best value.">
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm border border-white/10 rounded-2xl overflow-hidden">
+          <colgroup>
+            <col style={{ width: '22%' }} />
+            <col style={{ width: 'auto' }} />
+            <col style={{ width: '12%' }} />
+            <col style={{ width: '24%' }} />
+          </colgroup>
           <thead className="bg-white/10">
             <tr>
               <th className="px-4 py-2 text-left">Bundle</th>
@@ -346,34 +352,34 @@ const ServicesPage = () => (
           </thead>
           <tbody>
             <tr className="border-t border-white/10">
-              <td className="px-4 py-3 font-semibold flex items-center gap-2">
+              <td className="px-4 py-3 font-semibold flex items-center gap-2 align-top">
                 <CheckCircle2 size={16} /> Starter
               </td>
-              <td className="px-4 py-3 flex items-center gap-2">📄 Assessment + 🔒 1 Policy</td>
-              <td className="px-4 py-3">£299</td>
-              <td className="px-4 py-3">Early stage teams</td>
+              <td className="px-4 py-3 align-top">Assessment + 1 Policy</td>
+              <td className="px-4 py-3 align-top">£299</td>
+              <td className="px-4 py-3 align-top">Early stage teams</td>
             </tr>
             <tr className="border-t border-white/10 bg-white/5">
-              <td className="px-4 py-3 font-semibold flex items-center gap-2">
+              <td className="px-4 py-3 font-semibold flex items-center gap-2 align-top">
                 <CheckCircle2 size={16} /> Core
               </td>
-              <td className="px-4 py-3 flex items-center gap-2">📄 Assessment + 📄 3 Policies + ✅ Checklist</td>
-              <td className="px-4 py-3">£449</td>
-              <td className="px-4 py-3">Founders needing fast compliance wins</td>
+              <td className="px-4 py-3 align-top">Assessment + 3 Policies + Checklist</td>
+              <td className="px-4 py-3 align-top">£449</td>
+              <td className="px-4 py-3 align-top">Founders needing fast compliance wins</td>
             </tr>
             <tr className="border-t border-white/10">
-              <td className="px-4 py-3 font-semibold flex items-center gap-2">
+              <td className="px-4 py-3 font-semibold flex items-center gap-2 align-top">
                 <CheckCircle2 size={16} /> Complete{" "}
                 <span className="ml-2 text-xs bg-cyan-500 text-[#07131e] px-2 py-1 rounded-full">Best Value</span>
               </td>
-              <td className="px-4 py-3 flex flex-col gap-1">
-                <span>📄 Everything</span>
-                <span>🔒 Breach Plan</span>
-                <span>📄 DPIA Starter</span>
-                <span>✅ Training</span>
+              <td className="px-4 py-3 flex flex-col gap-1 align-top">
+                <span>Everything</span>
+                <span>Breach Plan</span>
+                <span>DPIA Starter</span>
+                <span>Training</span>
               </td>
-              <td className="px-4 py-3">£749</td>
-              <td className="px-4 py-3">Investor-ready & audit-ready teams</td>
+              <td className="px-4 py-3 align-top">£749</td>
+              <td className="px-4 py-3 align-top">Investor-ready & audit-ready teams</td>
             </tr>
           </tbody>
         </table>
