@@ -72,15 +72,15 @@ const EyeLogo: React.FC<{ size?: number; withText?: boolean; className?: string 
       >
         <defs>
           <radialGradient id="grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#7DF0FF" stopOpacity="0.9" />
-            <stop offset="70%" stopColor="#00D1E6" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#00A7C2" stopOpacity="0.4" />
+            <stop offset="0%" stopColor="#D2B48C" stopOpacity="0.9" />
+            <stop offset="70%" stopColor="#8B4513" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#654321" stopOpacity="0.4" />
           </radialGradient>
         </defs>
         <ellipse cx="120" cy="80" rx="108" ry="60" fill="#06121d" stroke="url(#grad)" strokeWidth="6" />
         <motion.g style={{ originY: "80px" }} animate={lidControls}>
           <ellipse cx="120" cy="80" rx="76" ry="42" fill="#e6fbff" />
-          <circle cx={120 + pos.x * 0.35} cy={80 + pos.y * 0.35} r="26" fill="#00c6e8" />
+          <circle cx={120 + pos.x * 0.35} cy={80 + pos.y * 0.35} r="26" fill="#8B4513" />
           <circle cx={120 + pos.x} cy={80 + pos.y} r="10" fill="#0b1f2c" />
           <circle cx={112 + pos.x * 0.6} cy={72 + pos.y * 0.6} r="4" fill="#fff" opacity="0.9" />
         </motion.g>
@@ -237,42 +237,40 @@ const HomePage = () => (
   <>
     <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-white/5 border border-white/10 shadow-xl">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(400px_200px_at_20%_0%,rgba(0,230,255,0.08),transparent),radial-gradient(400px_200px_at_90%_40%,rgba(0,170,255,0.08),transparent)]" />
-      <div className="grid md:grid-cols-2 gap-8 items-center relative">
-        <div>
-          <EyeLogo size={160} />
-          <h1 className="mt-6 text-3xl md:text-5xl font-semibold leading-tight">Bespoke GRC, Privacy & Cybersecurity Consultancy</h1>
-          <p className="mt-4 text-cyan-200/80 max-w-xl">
-            We help fast-moving teams achieve certifications (ISO 27001, SOC 2, PCI-DSS), harden processes, and ship securely—without
-            slowing down the business.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
-            >
-              Start a project <ArrowRight size={18} />
-            </Link>
-            <Link to="/services" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-cyan-300/40 hover:bg-white/5">
-              Explore services
-            </Link>
-          </div>
+      <div className="text-center relative">
+        <EyeLogo size={160} />
+        <h1 className="mt-6 text-3xl md:text-5xl font-semibold leading-tight max-w-4xl mx-auto">Bespoke GRC, Privacy & Cybersecurity Consultancy</h1>
+        <p className="mt-4 text-cyan-200/80 max-w-xl mx-auto">
+          We help fast-moving teams achieve certifications (ISO 27001, SOC 2, PCI-DSS), harden processes, and ship securely—without
+          slowing down the business.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3 justify-center">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
+          >
+            Start a project <ArrowRight size={18} />
+          </Link>
+          <Link to="/services" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-cyan-300/40 hover:bg-white/5">
+            Explore services
+          </Link>
         </div>
-        <div className="grid gap-4">
-          {[
-            { title: "ISO 27001 Programs", text: "Build or uplift ISMS: policy suites, risk registers, audit-ready evidence." },
-            { title: "Privacy & GDPR", text: "Records of processing, DPIAs, vendor reviews, OneTrust workflows." },
-            { title: "SOC 2 Readiness", text: "Control mapping, monitoring dashboards, executive reporting." },
-            { title: "Third-Party Risk", text: "Due diligence, contractual controls, continuous monitoring." },
-          ].map((c, i) => (
-            <div key={i} className="p-5 rounded-2xl bg-[#0f2231]/60 border border-white/10 flex items-start gap-3">
-              <Shield className="shrink-0" />
-              <div>
-                <div className="font-semibold">{c.title}</div>
-                <div className="text-sm text-cyan-200/80">{c.text}</div>
-              </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-4 mt-10">
+        {[
+          { title: "ISO 27001 Programs", text: "Build or uplift ISMS: policy suites, risk registers, audit-ready evidence." },
+          { title: "Privacy & GDPR", text: "Records of processing, DPIAs, vendor reviews, OneTrust workflows." },
+          { title: "SOC 2 Readiness", text: "Control mapping, monitoring dashboards, executive reporting." },
+          { title: "Third-Party Risk", text: "Due diligence, contractual controls, continuous monitoring." },
+        ].map((c, i) => (
+          <div key={i} className="p-5 rounded-2xl bg-[#0f2231]/60 border border-white/10 flex items-start gap-3">
+            <Shield className="shrink-0" />
+            <div>
+              <div className="font-semibold">{c.title}</div>
+              <div className="text-sm text-cyan-200/80">{c.text}</div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
 
