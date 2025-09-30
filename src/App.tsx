@@ -207,7 +207,7 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Phone size={16} /> +44 (0)74 389 61222
             </div>
             <div className="flex items-center gap-2">
-              <MapPin size={16} /> London
+              <MapPin size={16} /> Worldwide
             </div>
           </div>
         </div>
@@ -424,18 +424,8 @@ const AboutPage = () => (
 
 const BlogPage = () => (
   <>
-    <h1 className="text-3xl md:text-4xl font-semibold">Insights</h1>
+    <h1 className="text-3xl md:text-4xl font-semibold">Coming Soon</h1>
     <p className="mt-2 text-cyan-200/80">Opinionated takes on compliance that actually helps ship.</p>
-    <div className="grid md:grid-cols-3 gap-5 mt-6">
-      {[1, 2, 3].map((i) => (
-        <article key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
-          <div className="text-sm text-cyan-200/60">{`2025-0${i}-12`}</div>
-          <h3 className="mt-1 font-semibold">{`Post ${i}: Modern ISO Metrics`}</h3>
-          <p className="text-sm text-cyan-200/80 mt-2">Cut noise from KPIs, track outcomes that change behaviour.</p>
-          <Link to="#" className="block mt-3 text-cyan-300 hover:text-white">
-            Read more →
-          </Link>
-        </article>
       ))}
     </div>
   </>
