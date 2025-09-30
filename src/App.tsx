@@ -204,10 +204,10 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Mail size={16} /> hello@cyberclarityglobal.com
             </div>
             <div className="flex items-center gap-2">
-              <Phone size={16} /> +44 (0)20 0000 0000
+              <Phone size={16} /> +44 (0)74 389 61222
             </div>
             <div className="flex items-center gap-2">
-              <MapPin size={16} /> London • Johannesburg
+              <MapPin size={16} /> London
             </div>
           </div>
         </div>
