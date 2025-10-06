@@ -425,9 +425,9 @@ const AboutPage = () => (
 const BlogPage = () => (
   <>
     <h1 className="text-3xl md:text-4xl font-semibold">Coming Soon</h1>
-    <p className="mt-2 text-cyan-200/80">Opinionated takes on compliance that actually helps ship.</p>
-      ))}
-    </div>
+    <p className="mt-2 text-cyan-200/80">
+      Opinionated takes on compliance that actually helps ship.
+    </p>
   </>
 );
 
