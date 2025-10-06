@@ -516,7 +516,8 @@ const ContactPage = () => {
     </>
   );
 };
-const PrivacyPage = () => (
+
+export const PrivacyPage = () => (
   <>
     <h1 className="text-3xl md:text-4xl font-semibold text-cyan-300">Privacy Policy</h1>
     <p className="mt-3 text-cyan-200/80 max-w-3xl">
@@ -619,7 +620,6 @@ const PrivacyPage = () => (
   </>
 );
 
-export default PrivacyPage;
 
 
 const TermsPage = () => (
