@@ -552,8 +552,21 @@ const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) =
   </AnimatePresence>
 );
 
-import { CookieBanner } from "./components/CookieBanner";
-// ...
+// src/App.tsx
+import React from "react";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import Shell from "./components/Shell";
+import CookieBanner from "./components/CookieBanner";
+import PageTransition from "./components/PageTransition";
+import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/ServicesPage";
+import AboutPage from "./pages/AboutPage";
+import BlogPage from "./pages/BlogPage";
+import ContactPage from "./pages/ContactPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
+import Booking from "./pages/Booking";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -563,49 +576,6 @@ export default function App() {
 
         <PageTransition>
           <Routes>
-            {/* your routes… */}
-          </Routes>
-        </PageTransition>
-      </Shell>
-    </BrowserRouter>
-  );
-}
-
-// src/App.tsx (or wherever Routes live)
-import React from "react";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import Booking from "./pages/Booking"; // <= add this import
-
-function App() {
-  return (
-    <BrowserRouter>
-      {/* Your header / nav */}
-      <header className="...">
-        {/* Add a nav item */}
-        <NavLink to="/booking" className="...">
-          Book a call
-        </NavLink>
-      </header>
-
-      <Routes>
-        {/* your existing routes */}
-        <Route path="/" element={<Home />} />
-        {/* new route */}
-        <Route path="/booking" element={<Booking />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-   
-/* ========= App (default export) ========= */
-export default function App() {
-  return (
-    <BrowserRouter>
-      <Shell>
-        <PageTransition>
-          <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -613,6 +583,7 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
+            <Route path="/booking" element={<Booking />} />
           </Routes>
         </PageTransition>
       </Shell>
