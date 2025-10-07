@@ -410,8 +410,6 @@ const AboutPage = () => (
       CyberClarityGlobal blends governance, risk, and compliance with product-centric execution. We’ve helped start-ups and scale-ups
       establish trust, win enterprise deals, and pass audits without derailing delivery.
     </p>
-    <Section title="Principles">
-      <ul className="grid md:grid-cols-3 gap-5">
         
 {/* Principles list */}
 <Section>
