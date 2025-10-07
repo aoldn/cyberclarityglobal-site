@@ -547,6 +547,25 @@ const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) =
   </AnimatePresence>
 );
 
+import { CookieBanner } from "./components/CookieBanner";
+// ...
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Shell>
+        {/* Cookie consent banner */}
+        <CookieBanner />
+
+        <PageTransition>
+          <Routes>
+            {/* your routes… */}
+          </Routes>
+        </PageTransition>
+      </Shell>
+    </BrowserRouter>
+  );
+}
+
 /* ========= App (default export) ========= */
 export default function App() {
   return (
