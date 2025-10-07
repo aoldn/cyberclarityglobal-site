@@ -10,7 +10,7 @@ import { CheckCircle, Calendar, NotebookPen } from "lucide-react";
 // You can use Formspree (free tier) or EmailJS for note delivery.
 
 const CALENDLY_URL = "https://calendly.com/admin-cyberclarityglobal/30min"; // Linked to your account
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/your-id"; // optional – create a free Formspree form
+const FORMSPREE_ENDPOINT = "https://calendly.com/admin-cyberclarityglobal/30min"; // optional – create a free Formspree form
 
 export default function Booking() {
   const [scheduled, setScheduled] = useState(false);
@@ -136,3 +136,20 @@ export default function Booking() {
     </div>
   );
 }
+// vercel.json
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; frame-src https://calendly.com; img-src 'self' data: https:; connect-src 'self'"
+        }
+      ]
+    }
+  ]
+}
+import { Link } from "react-router-dom";
+// ...
+<Link to="/booking" className="hover:underline">Book a call</Link>
