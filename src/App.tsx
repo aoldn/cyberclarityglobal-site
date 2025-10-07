@@ -571,6 +571,34 @@ export default function App() {
   );
 }
 
+// src/App.tsx (or wherever Routes live)
+import React from "react";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import Booking from "./pages/Booking"; // <= add this import
+
+function App() {
+  return (
+    <BrowserRouter>
+      {/* Your header / nav */}
+      <header className="...">
+        {/* Add a nav item */}
+        <NavLink to="/booking" className="...">
+          Book a call
+        </NavLink>
+      </header>
+
+      <Routes>
+        {/* your existing routes */}
+        <Route path="/" element={<Home />} />
+        {/* new route */}
+        <Route path="/booking" element={<Booking />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+   
 /* ========= App (default export) ========= */
 export default function App() {
   return (
