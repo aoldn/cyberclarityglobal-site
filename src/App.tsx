@@ -412,25 +412,32 @@ const AboutPage = () => (
     </p>
     <Section title="Principles">
       <ul className="grid md:grid-cols-3 gap-5">
-        {["Clarity over jargon", "Automation where it counts", "Evidence-first by default"].map((p, i) => (
-          <li key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
-            {p}
-          </li>
-        ))}
-      </ul>
-    </Section>
-  </>
-);
+        
+{/* Principles list */}
+<Section>
+  <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+    {[
+      "Clarity over jargon",
+      "Automation where it counts",
+      "Evidence-first by default",
+    ].map((p, i) => (
+      <li key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+        {p}
+      </li>
+    ))}
+  </ul>
+</Section>
 
+{/* Blog page (simple placeholder) */}
 const BlogPage = () => (
-  <>
+  <div className="max-w-4xl mx-auto py-10">
     <h1 className="text-3xl md:text-4xl font-semibold">Coming Soon</h1>
     <p className="mt-2 text-cyan-200/80">
       Opinionated takes on compliance that actually helps ship.
     </p>
-  </>
+  </div>
 );
-
+ 
 const ContactPage = () => {
   type FormState = {
     name: string;
