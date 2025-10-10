@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
+import { PrivacyPage } from "./pages/PrivacyPage";
+<Route path="/privacy" element={<PrivacyPage />} />
 
 /* ========= Interactive Eye Logo ========= */
 const EyeLogo: React.FC<{ size?: number; withText?: boolean; className?: string }> = ({
@@ -426,6 +428,9 @@ const AboutPage = () => (
   </ul>
 </Section>
 
+    </>
+);
+
 {/* Blog page (simple placeholder) */}
 const BlogPage = () => (
   <div className="max-w-4xl mx-auto py-10">
@@ -521,9 +526,6 @@ const ContactPage = () => {
     </>
   );
 };
-
-import { PrivacyPage } from "./pages/PrivacyPage";
-<Route path="/privacy" element={<PrivacyPage />} />
 
 const TermsPage = () => (
   <>
