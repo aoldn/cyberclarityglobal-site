@@ -173,12 +173,16 @@ const submitNotes = async () => {
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; frame-src https://calendly.com; img-src 'self' data: https:; connect-src 'self'"
-        }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; frame-src https://calendly.com; img-src 'self' data: https:; connect-src 'self'" }
       ]
     }
   ]
 }
 */
+        <p className="mt-8 text-slate-400 text-sm">
+          Prefer email? Contact <a href="mailto:hello@cyberclarityglobal.com" className="underline decoration-sky-400/60">hello@cyberclarityglobal.com</a>.
+        </p>
+      </div>
+    </div>
+  );
+}
