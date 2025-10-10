@@ -6,11 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Calendar, NotebookPen } from "lucide-react";
 
 // --- HOW TO USE ---
-// You already have a Calendly link: https://calendly.com/admin-cyberclarityglobal/30min
+// You already have a Calendly link: https://calendly.com/admin-cyberclarityglobal/
 // You can use Formspree (free tier) or EmailJS for note delivery.
 
 const CALENDLY_URL = "https://calendly.com/admin-cyberclarityglobal/30min"; // Linked to your account
-const FORMSPREE_ENDPOINT = "https://calendly.com/admin-cyberclarityglobal/30min"; // optional – create a free Formspree form
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwprrokl"; // optional – create a free Formspree form
 
 export default function Booking() {
   const [scheduled, setScheduled] = useState(false);
@@ -52,14 +52,40 @@ export default function Booking() {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  const submitNotes = async () => {
-    setSubmitting(true);
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, _subject: "New booking notes from CyberClarityGlobal", _replyto: form.email }),
-      });
+const submitNotes = async () => {
+  setSubmitting(true);
+
+  // ✅ Validate email before sending
+  if (!form.email || !/.+@.+\..+/.test(form.email)) {
+    alert("Please enter a valid email so we can reply.");
+    setSubmitting(false);
+    return;
+  }
+
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({
+        ...form,
+        _subject: "New booking notes from CyberClarityGlobal",
+        _replyto: form.email,
+        source: "booking-page",
+      }),
+    });
+
+    if (!res.ok) throw new Error("Failed to submit");
+    setSubmitted(true);
+  } catch (err) {
+    alert("Couldn't send your notes. Please try again or email hello@cyberclarityglobal.com.");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
       if (!res.ok) throw new Error("Failed to submit");
       setSubmitted(true);
     } catch (err) {
@@ -114,11 +140,16 @@ export default function Booking() {
                   <Input placeholder="Company (optional)" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} className="bg-slate-950 border-slate-800 text-slate-200" />
                   <Input placeholder="Budget (optional)" value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })} className="bg-slate-950 border-slate-800 text-slate-200" />
                   <Textarea placeholder="Describe what outcome you're after, goals, timelines, or special requests." rows={8} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="bg-slate-950 border-slate-800 text-slate-200" />
-                  <div className="flex justify-end">
-                    <Button onClick={submitNotes} disabled={submitting} className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold">{submitting ? "Sending…" : "Send Notes"}</Button>
-                  </div>
-                </div>
-              )}
+                 <div className="flex justify-end">
+  <Button
+    onClick={submitNotes}
+    disabled={submitting || !form.email}
+    className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold"
+  >
+    {submitting ? "Sending…" : "Send Notes"}
+  </Button>
+</div>
+
 
               {submitted && (
                 <div className="p-8 text-center space-y-3">
@@ -136,7 +167,7 @@ export default function Booking() {
     </div>
   );
 }
-// vercel.json
+/* vercel.json (example)
 {
   "headers": [
     {
@@ -150,6 +181,4 @@ export default function Booking() {
     }
   ]
 }
-import { Link } from "react-router-dom";
-// ...
-<Link to="/booking" className="hover:underline">Book a call</Link>
+*/
