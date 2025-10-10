@@ -2,8 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
-import { PrivacyPage } from "./pages/PrivacyPage";
-<Route path="/privacy" element={<PrivacyPage />} />
+import Booking from "./pages/Booking"; // keep Booking as a separate page
 
 /* ========= Interactive Eye Logo ========= */
 const EyeLogo: React.FC<{ size?: number; withText?: boolean; className?: string }> = ({
@@ -133,6 +132,7 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             {navLink("/contact", "Contact")}
             {navLink("/privacy", "Privacy")}
             {navLink("/terms", "Terms")}
+            {navLink("/booking", "Book a Call")}
           </div>
           <button className="md:hidden ml-auto p-2" onClick={() => setOpen((v) => !v)}>
             {open ? <X /> : <Menu />}
@@ -147,24 +147,13 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               className="md:hidden border-t border-white/10"
             >
               <div className="px-4 py-2 flex flex-col gap-2">
-                <Link className="py-2" to="/services">
-                  Services
-                </Link>
-                <Link className="py-2" to="/about">
-                  About
-                </Link>
-                <Link className="py-2" to="/blog">
-                  Blog
-                </Link>
-                <Link className="py-2" to="/contact">
-                  Contact
-                </Link>
-                <Link className="py-2" to="/privacy">
-                  Privacy
-                </Link>
-                <Link className="py-2" to="/terms">
-                  Terms
-                </Link>
+                <Link className="py-2" to="/services">Services</Link>
+                <Link className="py-2" to="/about">About</Link>
+                <Link className="py-2" to="/blog">Blog</Link>
+                <Link className="py-2" to="/contact">Contact</Link>
+                <Link className="py-2" to="/privacy">Privacy</Link>
+                <Link className="py-2" to="/terms">Terms</Link>
+                <Link className="py-2" to="/booking">Book a Call</Link>
               </div>
             </motion.nav>
           )}
@@ -180,37 +169,21 @@ const Shell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">
               <div className="font-semibold text-cyan-100">Company</div>
-              <Link to="/about" className="block hover:text-white">
-                About
-              </Link>
-              <Link to="/blog" className="block hover:text-white">
-                Blog
-              </Link>
-              <Link to="/services" className="block hover:text-white">
-                Services
-              </Link>
+              <Link to="/about" className="block hover:text-white">About</Link>
+              <Link to="/blog" className="block hover:text-white">Blog</Link>
+              <Link to="/services" className="block hover:text-white">Services</Link>
             </div>
             <div className="space-y-2">
               <div className="font-semibold text-cyan-100">Legal</div>
-              <Link to="/privacy" className="block hover:text-white">
-                Privacy
-              </Link>
-              <Link to="/terms" className="block hover:text-white">
-                Terms
-              </Link>
+              <Link to="/privacy" className="block hover:text-white">Privacy</Link>
+              <Link to="/terms" className="block hover:text-white">Terms</Link>
             </div>
           </div>
           <div className="space-y-2">
             <div className="font-semibold text-cyan-100">Contact</div>
-            <div className="flex items-center gap-2">
-              <Mail size={16} /> hello@cyberclarityglobal.com
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone size={16} /> +44 (0)74 389 61222
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin size={16} /> Worldwide
-            </div>
+            <div className="flex items-center gap-2"><Mail size={16} /> hello@cyberclarityglobal.com</div>
+            <div className="flex items-center gap-2"><Phone size={16} /> +44 (0)74 389 61222</div>
+            <div className="flex items-center gap-2"><MapPin size={16} /> Worldwide</div>
           </div>
         </div>
         <div className="text-center text-xs text-cyan-200/60 pb-8">
@@ -237,20 +210,19 @@ const Section: React.FC<{ title: string; subtitle?: string; children?: React.Rea
 /* ========= Pages ========= */
 const HomePage = () => (
   <>
+    {/* HERO */}
     <div className="relative overflow-hidden rounded-2xl p-8 md:p-12 bg-white/5 border border-white/10 shadow-xl">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(400px_200px_at_20%_0%,rgba(0,230,255,0.08),transparent),radial-gradient(400px_200px_at_90%_40%,rgba(0,170,255,0.08),transparent)]" />
       <div className="text-center relative">
         <EyeLogo size={160} />
-        <h1 className="mt-6 text-3xl md:text-5xl font-semibold leading-tight max-w-4xl mx-auto">Bespoke GRC, Privacy & Cybersecurity Consultancy</h1>
+        <h1 className="mt-6 text-3xl md:text-5xl font-semibold leading-tight max-w-4xl mx-auto">
+          Bespoke GRC, Privacy & Cybersecurity Consultancy
+        </h1>
         <p className="mt-4 text-cyan-200/80 max-w-xl mx-auto">
-          We help fast-moving teams achieve certifications (ISO 27001, SOC 2, PCI-DSS), harden processes, and ship securely—without
-          slowing down the business.
+          We help fast-moving teams achieve certifications (ISO 27001, SOC 2, PCI-DSS), harden processes, and ship securely—without slowing down the business.
         </p>
         <div className="mt-6 flex flex-wrap gap-3 justify-center">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
-          >
+          <Link to="/contact" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition">
             Start a project <ArrowRight size={18} />
           </Link>
           <Link to="/services" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-cyan-300/40 hover:bg-white/5">
@@ -276,6 +248,7 @@ const HomePage = () => (
       </div>
     </div>
 
+    {/* WHY */}
     <Section title="Why CyberClarityGlobal" subtitle="Outcome-first consulting designed for modern product teams.">
       <div className="grid md:grid-cols-3 gap-5">
         {[
@@ -291,6 +264,7 @@ const HomePage = () => (
       </div>
     </Section>
 
+    {/* OUTCOMES */}
     <Section title="Selected Outcomes">
       <div className="grid md:grid-cols-3 gap-5">
         {["ISO 27001 certification in 14 weeks", "SOC 2 Type I in 90 days", "Vendor risk time cut by 60%"].map((t, i) => (
@@ -335,14 +309,15 @@ const ServicesPage = () => (
       ))}
     </div>
 
+    {/* Bundle table */}
     <Section title="Bundles at a Glance" subtitle="Compare our packaged offerings for the best value.">
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm border border-white/10 rounded-2xl overflow-hidden">
           <colgroup>
-            <col style={{ width: '22%' }} />
-            <col style={{ width: 'auto' }} />
-            <col style={{ width: '12%' }} />
-            <col style={{ width: '24%' }} />
+            <col style={{ width: "22%" }} />
+            <col style={{ width: "auto" }} />
+            <col style={{ width: "12%" }} />
+            <col style={{ width: "24%" }} />
           </colgroup>
           <thead className="bg-white/10">
             <tr>
@@ -388,16 +363,14 @@ const ServicesPage = () => (
       </div>
     </Section>
 
+    {/* CTA */}
     <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-cyan-400/10 to-white/5 border border-white/10">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="text-lg font-semibold">Not sure where to start?</div>
           <p className="text-sm text-cyan-200/80">Book a 30-minute discovery call and we’ll map the quickest path to a passable audit or investor-ready pack.</p>
         </div>
-        <Link
-          to="/contact"
-          className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition"
-        >
+        <Link to="/contact" className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-cyan-400/90 text-[#07131e] font-medium hover:bg-cyan-300 transition">
           Schedule a call <ArrowRight size={18} />
         </Link>
       </div>
@@ -412,51 +385,28 @@ const AboutPage = () => (
       CyberClarityGlobal blends governance, risk, and compliance with product-centric execution. We’ve helped start-ups and scale-ups
       establish trust, win enterprise deals, and pass audits without derailing delivery.
     </p>
-        
-{/* Principles list */}
-<Section>
-  <ul className="mt-6 grid gap-3 sm:grid-cols-3">
-    {[
-      "Clarity over jargon",
-      "Automation where it counts",
-      "Evidence-first by default",
-    ].map((p, i) => (
-      <li key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
-        {p}
-      </li>
-    ))}
-  </ul>
-</Section>
 
-    </>
+    {/* Principles list */}
+    <Section>
+      <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+        {["Clarity over jargon", "Automation where it counts", "Evidence-first by default"].map((p, i) => (
+          <li key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">{p}</li>
+        ))}
+      </ul>
+    </Section>
+  </>
 );
 
-{/* Blog page (simple placeholder) */}
 const BlogPage = () => (
   <div className="max-w-4xl mx-auto py-10">
     <h1 className="text-3xl md:text-4xl font-semibold">Coming Soon</h1>
-    <p className="mt-2 text-cyan-200/80">
-      Opinionated takes on compliance that actually helps ship.
-    </p>
+    <p className="mt-2 text-cyan-200/80">Opinionated takes on compliance that actually helps ship.</p>
   </div>
 );
- 
-const ContactPage = () => {
-  type FormState = {
-    name: string;
-    email: string;
-    company: string;
-    budget: string;
-    details: string;
-  };
 
-  const [form, setForm] = React.useState<FormState>({
-    name: "",
-    email: "",
-    company: "",
-    budget: "",
-    details: "",
-  });
+const ContactPage = () => {
+  type FormState = { name: string; email: string; company: string; budget: string; details: string; };
+  const [form, setForm] = React.useState<FormState>({ name: "", email: "", company: "", budget: "", details: "" });
 
   const fields: Array<{ label: string; type: string; name: keyof FormState; required?: boolean }> = [
     { label: "Name", type: "text", name: "name", required: true },
@@ -467,7 +417,6 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const to = "hello@cyberclarityglobal.com";
     const subject = `Website enquiry from ${form.name || "Unknown"}${form.company ? ` (${form.company})` : ""}`;
     const body = [
@@ -479,7 +428,6 @@ const ContactPage = () => {
       "Project details:",
       form.details,
     ].join("\n");
-
     const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
   };
@@ -527,6 +475,15 @@ const ContactPage = () => {
   );
 };
 
+const PrivacyPage = () => (
+  <>
+    <h1 className="text-3xl md:text-4xl font-semibold">Privacy Policy</h1>
+    <p className="mt-3 text-cyan-200/80 max-w-3xl">
+      We respect your privacy. Replace this placeholder with your actual policy (data collected, purposes, retention, rights, contacts).
+    </p>
+  </>
+);
+
 const TermsPage = () => (
   <>
     <h1 className="text-3xl md:text-4xl font-semibold">Terms of Service</h1>
@@ -554,28 +511,11 @@ const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) =
   </AnimatePresence>
 );
 
-// src/App.tsx
-import React from "react";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import Shell from "./components/Shell";
-import CookieBanner from "./components/CookieBanner";
-import PageTransition from "./components/PageTransition";
-import HomePage from "./pages/HomePage";
-import ServicesPage from "./pages/ServicesPage";
-import AboutPage from "./pages/AboutPage";
-import BlogPage from "./pages/BlogPage";
-import ContactPage from "./pages/ContactPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import TermsPage from "./pages/TermsPage";
-import Booking from "./pages/Booking";
-
+/* ========= App (single default export) ========= */
 export default function App() {
   return (
     <BrowserRouter>
       <Shell>
-        {/* Cookie consent banner */}
-        <CookieBanner />
-
         <PageTransition>
           <Routes>
             <Route path="/" element={<HomePage />} />
