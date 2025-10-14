@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from "react-
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
 import Booking from "./pages/Booking"; // keep Booking as a separate page
+import { PrivacyPage } from "./pages/PrivacyPage";
+
 
 /* ========= Interactive Eye Logo ========= */
 const EyeLogo: React.FC<{ size?: number; withText?: boolean; className?: string }> = ({
@@ -474,15 +476,6 @@ const ContactPage = () => {
     </>
   );
 };
-
-const PrivacyPage = () => (
-  <>
-    <h1 className="text-3xl md:text-4xl font-semibold">Privacy Policy</h1>
-    <p className="mt-3 text-cyan-200/80 max-w-3xl">
-      We respect your privacy. Replace this placeholder with your actual policy (data collected, purposes, retention, rights, contacts).
-    </p>
-  </>
-);
 
 const TermsPage = () => (
   <>
