@@ -4,7 +4,8 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "lucide-react";
 import Booking from "./pages/Booking"; // keep Booking as a separate page
 import { PrivacyPage } from "./pages/PrivacyPage";
-import TermsPage from "./pages/TermsPage";
+import { TermsPage } from "./pages/TermsPage";
+
 
 
 /* ========= Interactive Eye Logo ========= */
