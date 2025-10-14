@@ -1,24 +1,29 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useRef, useState } from "react";
+import { CheckCircle, Calendar, NotebookPen } from "lucide-react";
 
 // --- HOW TO USE ---
 // You already have a Calendly link: https://calendly.com/admin-cyberclarityglobal/30min
-// You can use Formspree (free tier) or EmailJS for note delivery.
+// You can use Formspree (free tier) for note delivery.
 
-const CALENDLY_URL = "https://calendly.com/admin-cyberclarityglobal/30min"; // Linked to your account
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwprrokl"; // your Formspree form
+const CALENDLY_URL = "https://calendly.com/admin-cyberclarityglobal/30min";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwprrokl";
 
 export default function Booking() {
   const [scheduled, setScheduled] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", company: "", budget: "", notes: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    budget: "",
+    notes: "",
+  });
 
   const calendlyRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    // Calendly JS
     const scriptId = "calendly-script";
     if (!document.getElementById(scriptId)) {
       const s = document.createElement("script");
@@ -38,6 +43,7 @@ export default function Booking() {
       document.head.appendChild(l);
     }
 
+    // Listen for Calendly event
     const handleMessage = (e: MessageEvent) => {
       if (typeof e.data === "object" && (e as any).data?.event === "calendly.event_scheduled") {
         setScheduled(true);
@@ -58,7 +64,7 @@ export default function Booking() {
   const submitNotes = async () => {
     setSubmitting(true);
 
-    // Validate email before sending
+    // Validate email
     if (!form.email || !/.+@.+\..+/.test(form.email)) {
       alert("Please enter a valid email so we can reply.");
       setSubmitting(false);
@@ -68,10 +74,7 @@ export default function Booking() {
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           ...form,
           _subject: "New booking notes from CyberClarityGlobal",
@@ -79,7 +82,6 @@ export default function Booking() {
           source: "booking-page",
         }),
       });
-
       if (!res.ok) throw new Error("Failed to submit");
       setSubmitted(true);
     } catch (err) {
@@ -98,8 +100,9 @@ export default function Booking() {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-slate-900/60 border-slate-800 shadow-xl">
-            <CardContent className="p-0">
+          {/* Calendly panel */}
+          <div className="rounded-xl bg-slate-900/60 border border-slate-800 shadow-xl">
+            <div className="p-0">
               <div className="flex items-center gap-2 p-4 border-b border-slate-800">
                 <Calendar className="h-5 w-5 text-sky-300" />
                 <h2 className="text-white font-medium">Select a Time</h2>
@@ -125,14 +128,15 @@ export default function Booking() {
                   </p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="bg-slate-900/60 border-slate-800 shadow-xl">
-            <CardContent className="p-0">
+          {/* Notes panel */}
+          <div className="rounded-xl bg-slate-900/60 border border-slate-800 shadow-xl">
+            <div className="p-0">
               <div className="flex items-center gap-2 p-4 border-b border-slate-800">
                 <NotebookPen className="h-5 w-5 text-sky-300" />
-                <h2 className="text-white font-medium">Requirements & Notes</h2>
+                <h2 className="text-white font-medium">Requirements &amp; Notes</h2>
               </div>
 
               {!scheduled && !submitted && (
@@ -143,46 +147,46 @@ export default function Booking() {
 
               {scheduled && !submitted && (
                 <div className="p-4 space-y-3">
-                  <Input
+                  <input
                     placeholder="Your Name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-slate-200"
+                    className="bg-slate-950 border border-slate-800 text-slate-200 rounded-md px-3 py-2 w-full"
                   />
-                  <Input
+                  <input
                     placeholder="Email"
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-slate-200"
+                    className="bg-slate-950 border border-slate-800 text-slate-200 rounded-md px-3 py-2 w-full"
                   />
-                  <Input
+                  <input
                     placeholder="Company (optional)"
                     value={form.company}
                     onChange={(e) => setForm({ ...form, company: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-slate-200"
+                    className="bg-slate-950 border border-slate-800 text-slate-200 rounded-md px-3 py-2 w-full"
                   />
-                  <Input
+                  <input
                     placeholder="Budget (optional)"
                     value={form.budget}
                     onChange={(e) => setForm({ ...form, budget: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-slate-200"
+                    className="bg-slate-950 border border-slate-800 text-slate-200 rounded-md px-3 py-2 w-full"
                   />
-                  <Textarea
+                  <textarea
                     placeholder="Describe what outcome you're after, goals, timelines, or special requests."
                     rows={8}
                     value={form.notes}
                     onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                    className="bg-slate-950 border-slate-800 text-slate-200"
+                    className="bg-slate-950 border border-slate-800 text-slate-200 rounded-md px-3 py-2 w-full"
                   />
                   <div className="flex justify-end">
-                    <Button
+                    <button
                       onClick={submitNotes}
                       disabled={submitting || !form.email}
-                      className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold"
+                      className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold rounded-md px-4 py-2 disabled:opacity-60"
                     >
                       {submitting ? "Sending…" : "Send Notes"}
-                    </Button>
+                    </button>
                   </div>
                 </div>
               )}
@@ -196,8 +200,8 @@ export default function Booking() {
                   </p>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         <p className="mt-8 text-slate-400 text-sm">
@@ -211,3 +215,4 @@ export default function Booking() {
     </div>
   );
 }
+
