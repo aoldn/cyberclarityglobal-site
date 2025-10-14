@@ -478,18 +478,6 @@ const ContactPage = () => {
   );
 };
 
-const TermsPage = () => (
-  <>
-    <h1 className="text-3xl md:text-4xl font-semibold">Terms of Service</h1>
-    <p className="mt-3 text-cyan-200/80 max-w-3xl">These terms govern use of our site and services. Replace with your counsel-approved terms.</p>
-    <ol className="list-decimal ml-6 mt-4 space-y-2 text-cyan-200/80">
-      <li>Engagements are subject to a signed statement of work.</li>
-      <li>Confidential information must be handled securely and used only for agreed purposes.</li>
-      <li>Liability limited as per contract.</li>
-    </ol>
-  </>
-);
-
 /* ========= Router wrapper with page animation ========= */
 const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <AnimatePresence mode="wait">
