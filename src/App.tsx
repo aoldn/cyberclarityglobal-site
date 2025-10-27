@@ -5,6 +5,9 @@ import { Menu, X, Shield, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from "
 import Booking from "./pages/Booking"; // keep Booking as a separate page
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { TermsPage } from "./pages/TermsPage";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 
 
