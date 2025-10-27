@@ -1,0 +1,26 @@
+// src/components/Shell.tsx
+import React from "react";
+
+export default function Shell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <header className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+        {/* your logo + nav links here */}
+        <button
+          data-tally-open="mDl82b"
+          data-tally-layout="modal"          // or drawer-right / drawer-left / fullscreen
+          data-tally-width="700"
+          data-tally-hide-title="1"
+          data-tally-transparent-background="1"
+          className="px-5 py-2 rounded-2xl shadow font-medium bg-white/10 hover:bg-white/20"
+        >
+          Start Free Assessment
+        </button>
+      </header>
+
+      <main className="flex-1">{children}</main>
+
+      <footer className="px-6 py-10 opacity-70">{/* footer */}</footer>
+    </div>
+  );
+}
