@@ -1,4 +1,7 @@
 // src/pages/Home.tsx
+import TallyTest from "../components/TallyTest";
+export default function Home(){ return (<main className="p-8"><TallyTest/></main>); }
+
 import TallyPopupButton from "../components/TallyPopupButton";
 
 export default function Home() {
