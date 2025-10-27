@@ -8,7 +8,7 @@ import { TermsPage } from "./pages/TermsPage";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-
+import Assessment from "./pages/Assessment";
 
 
 /* ========= Interactive Eye Logo ========= */
@@ -513,6 +513,7 @@ export default function App() {
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/terms" element={<TermsPage />} />
+            <Route path="/assessment" element={<Assessment />} />
           </Routes>
         </PageTransition>
       </Shell>
