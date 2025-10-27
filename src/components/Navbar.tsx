@@ -36,3 +36,15 @@ export default function TallyPopupButton() {
   );
 }
 
+// src/components/Navbar.tsx
+import TallyPopupButton from "./TallyPopupButton";
+
+export default function Navbar() {
+  return (
+    <header className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+      <span className="text-xs opacity-60">DEBUG: Navbar mounted</span>
+      <TallyPopupButton />
+    </header>
+  );
+}
+
