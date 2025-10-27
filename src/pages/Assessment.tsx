@@ -1,11 +1,25 @@
-// e.g., src/pages/Assessment.tsx
-import TallyInline from "../components/TallyInline";
+// src/components/TallyEmbed.tsx
+import { useEffect } from "react";
 
-export default function Assessment() {
+export default function TallyEmbed() {
+  useEffect(() => {
+    const src = "https://tally.so/widgets/embed.js";
+    if (!document.querySelector(`script[src="${src}"]`)) {
+      const s = document.createElement("script");
+      s.src = src; s.async = true;
+      document.body.appendChild(s);
+    } else {
+      (window as any).Tally?.loadEmbeds?.();
+    }
+  }, []);
+
   return (
-    <main className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-semibold mb-6">Security Readiness Assessment</h1>
-      <TallyInline />
-    </main>
+    <iframe
+      data-tally-src="https://tally.so/embed/mDl82b?alignLeft=1&hideTitle=1&dynamicHeight=1"
+      width="100%"
+      height="600"
+      style={{ border: 0, borderRadius: 16, background: "transparent" }}
+      title="CyberClarity Assessment"
+    />
   );
 }
