@@ -13,7 +13,7 @@ export default function TallyTest() {
   }, []);
 
   const open = () => {
-    (window as any).Tally?.openPopup("YOUR_FORM_ID", {
+    (window as any).Tally?.openPopup("mDl82b", {
       layout: "modal",
       width: 700,
       hideTitle: true,
