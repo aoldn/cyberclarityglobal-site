@@ -1,0 +1,31 @@
+// src/components/TallyPopup.tsx
+import { useEffect, useState } from "react";
+
+export default function TallyPopup() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // ensure the script exists and is loaded
+    const src = "https://tally.so/widgets/embed.js";
+    const found = document.querySelector<HTMLScriptElement>(`script[src="${src}"]`);
+    if (found) {
+      if ((window as any).Tally) setReady(true);
+      else found.addEventListener("load", () => setReady(true));
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = src; s.async = true; s.onload = () => setReady(true);
+    document.body.appendChild(s);
+  }, []);
+
+  const open = () =>
+    (window as any).Tally?.openPopup("mDl82b", {
+      layout: "modal", width: 700, hideTitle: true, transparentBackground: true,
+    });
+
+  return (
+    <button onClick={open} disabled={!ready} className="px-5 py-3 rounded-2xl shadow font-medium">
+      Start Free Assessment
+    </button>
+  );
+}
