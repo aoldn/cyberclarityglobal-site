@@ -1,0 +1,28 @@
+// src/components/TallyPopupButton.tsx
+import React, { useEffect } from "react";
+
+export default function TallyPopupButton() {
+  useEffect(() => {
+    // Ensure the embed script exists (harmless if already added in index.html)
+    if (!document.querySelector('script[src="https://tally.so/widgets/embed.js"]')) {
+      const s = document.createElement("script");
+      s.src = "https://tally.so/widgets/embed.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }, []);
+
+  return (
+    <button
+      data-tally-open="mDl82b"
+      data-tally-layout="modal"      // or "drawer-right", "drawer-left", "fullscreen"
+      data-tally-width="700"
+      data-tally-hide-title="1"
+      data-tally-emoji-text="🚀"
+      data-tally-emoji-animation="wave"
+      className="px-5 py-3 rounded-2xl shadow font-medium"
+    >
+      Start Free Assessment
+    </button>
+  );
+}
